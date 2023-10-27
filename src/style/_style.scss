@@ -1,7 +1,16 @@
 body {
+    font-family: 'Roboto-Regular';
     background-color: $bg-color
 }
 
+.text-bold{
+    font-family: 'Roboto-Bold';
+}
+
+.text-italic{
+    font-family: 'Roboto-Italic';
+}
+
 .test-class{
-    user-select: none;
+    user-select: none
 }

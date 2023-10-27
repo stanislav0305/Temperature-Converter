@@ -57,7 +57,7 @@ module.exports = {
                 use: {
                     loader: 'babel-loader',
                     options: {
-                        presets: [  
+                        presets: [
                             [
                                 '@babel/preset-env',
                                 {
@@ -67,6 +67,13 @@ module.exports = {
                             ],
                         ]
                     }
+                }
+            },
+            {
+                test: /\.ttf$/i,
+                type: 'asset/resource',
+                generator: {
+                    filename: 'fonts/[name][ext]'
                 }
             },
         ]
