@@ -37,8 +37,17 @@ module.exports = {
             {
                 test: /\.(c|sc|sa)ss$/i,
                 use: [
+                    //style-loader - not working in IE11 correctly
                     devMode ? 'style-loader' : MiniCssExtractPlugin.loader,
                     'css-loader',
+                    {
+                        loader: 'postcss-loader',
+                        options: {
+                            postcssOptions: {
+                                plugins: [require('postcss-preset-env')],
+                            }
+                        }
+                    },
                     'sass-loader',
                 ]
             }
