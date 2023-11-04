@@ -18,7 +18,10 @@ module.exports = {
         open: true,
         hot: true
     },
-    entry: [path.resolve(__dirname, 'src', 'index.js')],
+    entry: [path.resolve(__dirname, 'src', 'index.ts')],
+    resolve: {
+        extensions: ['.ts', '.tsx', '.js'],
+    },
     output: {
         path: path.resolve(__dirname, distDir),
         clean: true,
@@ -26,7 +29,10 @@ module.exports = {
         assetModuleFilename: 'assets/[hash][ext]',
     },
     plugins: [
-        new HtmlWebpackPlugin({ template: path.resolve(__dirname, 'src', 'index.html') }),
+        new HtmlWebpackPlugin({ 
+            template: path.resolve(__dirname, 'src', 'index.html'),
+            inject : "body"
+         }),
         new MiniCssExtractPlugin({ filename: 'name[contenthash].css' }),
     ],
     module: {
@@ -53,28 +59,31 @@ module.exports = {
                 ]
             },
             {
-                test: /\.(?:js|mjs|cjs)$/,
+                test: /\.([cm]?ts|tsx)$/,
                 exclude: /node_modules/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: [
-                            [
-                                '@babel/preset-env',
-                                {
-                                    'corejs': '3.33.1',
-                                    'useBuiltIns': 'entry'
-                                }
-                            ],
-                        ]
-                    }
-                }
+                use: [
+                    {
+                        loader: 'babel-loader',
+                        options: {
+                            presets: [
+                                [
+                                    '@babel/preset-env',
+                                    {
+                                        'corejs': '3.33.1',
+                                        'useBuiltIns': 'entry'
+                                    }
+                                ],
+                            ]
+                        }
+                    },
+                    'ts-loader',
+                ]
             },
             {
                 test: /\.ttf$/i,
                 type: 'asset/resource',
                 generator: {
-                    filename: 'fonts/[name][ext]'
+                    filename: 'assets/fonts/[name][ext]'
                 }
             },
             {
