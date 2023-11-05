@@ -1,31 +1,39 @@
 import './index.html'
 import './index.scss'
-import {Temperature, TemperatureEnum, TemperatureConverterSingelton } from './ts/temperature-converter'
+import { TemperatureFormat } from './ts/temperature-converter'
+
+import { InputManager } from './ts/input-manager'
 
 //for IE
 //import "core-js";
-import 'core-js/actual/map'
-import 'core-js/features/url';
-import 'core-js/features/url-search-params';
+//import 'core-js/actual/map'
+//import 'core-js/features/url';
+//import 'core-js/features/url-search-params';
 
-console.log("Hi !!!");
+const inputs = document.querySelectorAll<HTMLInputElement>('#inputs-panel input')
+const inputManager = new InputManager(inputs)
+inputManager.addEventListenerToActiveInput('input', onChangeTemperatureValues, false)
 
-const converter = TemperatureConverterSingelton.getInstance();
-const result = converter.convert(10, TemperatureEnum.Kelvin)
+inputManager.addEventListenerForAllInputs('click', onActivateInput, false)
 
-console.log(result);
 
-let a;
-if (a === null) {
-    a = 1
+function onActivateInput(event: Event) {
+    event.preventDefault()
+
+    const elem = event.target as HTMLInputElement
+    const format = elem.getAttribute('data-format') as TemperatureFormat
+
+    if (inputManager.activeFormat !== format) {
+        inputManager.removeEventListenerFromActiveInput('input', onChangeTemperatureValues, false)
+
+        inputManager.activateInput(format, elem)
+        inputManager.addEventListenerToActiveInput('input', onChangeTemperatureValues, false)
+    }
 }
-const W: Map<string, string> = new Map([
-    ['A', '1'],
-    ['B', '2'],
-    ['C', '3'],
-    ['D', '4'],
-])
 
-W.forEach((key: string, value: string) => {
-    console.log(`${key} - ${value}`);
-})
+
+function onChangeTemperatureValues(event: Event) {
+    event.preventDefault()
+
+    inputManager.recalcTemperatureValues()
+}

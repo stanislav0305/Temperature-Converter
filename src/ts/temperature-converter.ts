@@ -6,13 +6,7 @@ export type Temperature = {
     reaumur: string,
 }
 
-export enum TemperatureEnum {
-    Celsius,
-    Fahrenheit,
-    Kelvin,
-    Rankine,
-    Reaumur
-}
+export type TemperatureFormat = keyof Temperature
 
 export class TemperatureConverterSingelton {
     private static instance: TemperatureConverterSingelton;
@@ -27,33 +21,32 @@ export class TemperatureConverterSingelton {
         return TemperatureConverterSingelton.instance
     }
 
-    public convert(value: number, format: TemperatureEnum): Temperature {
+    public convert(value: number, format: TemperatureFormat): Temperature {
         let c = 0;
 
         switch (format) {
-            case TemperatureEnum.Celsius: {
+            case 'celsius': {
                 c = value;
                 break;
             }
-            case TemperatureEnum.Fahrenheit: {
-                c = this.fahrenheitToCelsius(value);
+            case 'fahrenheit': {
+                c = this.fahrenheitToCelsius(value)
                 break;
             }
-            case TemperatureEnum.Kelvin: {
-                c = this.KelvinToCelsius(value);
+            case 'kelvin': {
+                c = this.KelvinToCelsius(value)
                 break;
             }
-            case TemperatureEnum.Rankine: {
-                c = this.rankineToCelsius(value);
+            case 'rankine': {
+                c = this.rankineToCelsius(value)
                 break;
             }
-            case TemperatureEnum.Reaumur: {
-                c = this.reaumurToCelsius(value);
+            case 'reaumur': {
+                c = this.reaumurToCelsius(value)
                 break;
             }
             default: {
-                // ???? never
-                break;
+                const exhaustiveCheck: never = format;
             }
         }
 
