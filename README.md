@@ -7,7 +7,7 @@
 ## Снимок экрана
 ![Снимок экрана](./readme-img/screen1.png)
 
- [Ссылка на демо](https://stanislav0305.github.io/Temperature-converter/)
+ [Ссылка на демо](https://stanislav0305.github.io/Temperature-Converter/)
 
  ## Описание Node.js-проекта
 - В качестве рабочего инструмента использовался Visual Studio Code
@@ -65,4 +65,4 @@
     - [core-js](https://www.npmjs.com/package/core-js) - модульная стандартная библиотека для JavaScript. Включает полифилы для ECMAScript до 2023 года. Используется для поддержки старых браузеров. В текущем проекте не использовалась, но добавлена в webpack конфигурацию и при необходимости можно импортировать нужный функционал в код;
 
 
-  [Ссылка на демо](https://stanislav0305.github.io/Temperature-converter/)
+  [Ссылка на демо](https://stanislav0305.github.io/Temperature-Converter/)
