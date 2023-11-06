@@ -1,20 +1,34 @@
 body {
     font-family: 'Roboto-Regular';
-    background-color: $bg-color
+    background-color: $bg-color;
+    text-align: center;
 }
 
-.text-bold{
-    font-family: 'Roboto-Bold';
+.inputs-panel {
+    display: inline-block;
+    border: 1px dashed #9E9E9E;
+    width: 300px;
 }
 
-.text-italic{
+.input-item {
+    text-align: right;
+}
+
+.input-item span {
     font-family: 'Roboto-Italic';
+    text-align: right;
 }
 
-.test-class{
-    user-select: none
+.input-item div {
+    display: inline-block;
+    width: 50%;
+    text-align: left;
 }
 
-.width-70{
-    width: 70px
+.input-item div input {
+    width: 70px;
+}
+
+.input-item div span {
+    font-family: 'Roboto-Bold';
 }

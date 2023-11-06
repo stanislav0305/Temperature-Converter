@@ -1,14 +1,8 @@
 import './index.html'
 import './index.scss'
 import { TemperatureFormat } from './ts/temperature-converter'
-
 import { InputManager } from './ts/input-manager'
 
-//for IE
-//import "core-js";
-//import 'core-js/actual/map'
-//import 'core-js/features/url';
-//import 'core-js/features/url-search-params';
 
 const inputs = document.querySelectorAll<HTMLInputElement>('#inputs-panel input')
 const inputManager = new InputManager(inputs)

@@ -33,7 +33,7 @@ module.exports = {
             template: path.resolve(__dirname, 'src', 'index.html'),
             inject : "body"
          }),
-        new MiniCssExtractPlugin({ filename: 'name[contenthash].css' }),
+        new MiniCssExtractPlugin({ filename: '[name].[contenthash].css' }),
     ],
     module: {
         rules: [
